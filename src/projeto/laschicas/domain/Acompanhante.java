@@ -55,9 +55,18 @@ public class Acompanhante extends Pessoa {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    /*
+    public void setSexo(String sexo){
+        super.setSexo(sexo);
+    }
     
-    public String validar()   {
+    public String getSexo(){
+        return super.getSexo();
+        
+    }
+*/
+    
+    public String validar(){
         // validações feitas pelo elemento antes de salvar
         
         String errorMsg = "";
@@ -71,11 +80,11 @@ public class Acompanhante extends Pessoa {
         if ( getIdade() == null || getIdade() <= 0){
             errorMsg +=" Idade não pode ser menor ou igual a 0 \n";
         }
-        if (true) {
-            
+        if (this.getSexo() == null || "".equals(this.getSexo()) ) {
+            errorMsg+="Sexo não pode ser vazio \n";
         }
-        if (true) {
-            
+        if (getValorHora() == null || getValorHora() <= 0.0) {
+            errorMsg+="Valor hora não pode ser menor ou igual a 0";
         }
         if (true) {
             

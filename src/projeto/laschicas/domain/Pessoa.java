@@ -13,6 +13,7 @@ public abstract class  Pessoa implements PessoaValidator{
     private String nome;
     private String cpf;
     private Integer idade;
+    private String sexo;
 
     /**
      * @return the nome
@@ -54,6 +55,20 @@ public abstract class  Pessoa implements PessoaValidator{
      */
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     
     
