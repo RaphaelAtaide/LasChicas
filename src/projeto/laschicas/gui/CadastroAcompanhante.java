@@ -7,6 +7,7 @@ package projeto.laschicas.gui;
 
 import javax.swing.JOptionPane;
 import projeto.laschicas.domain.Acompanhante;
+import projeto.laschicas.domain.AcompanhanteFachada;
 
 /**
  *
@@ -150,17 +151,18 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarClickButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarClickButton
-        Acompanhante a = new Acompanhante();
-        a.setNome(inputNome.getText());
-        a.setIdade("".equals(inputIdade.getText())?0:Integer.parseInt(inputIdade.getText()));
-        a.setCpf(inputCpf.getText());
-        a.setSexo(inputSexo.getText()); //adicionar o campo sexo no banco de dados posteriormente
-        a.setValorHora("".equals(inputValorHora.getText())?0.00:Double.parseDouble(inputValorHora.getText()));
-        a.setDescricao(inputDescricao.getText());
-        String result =  a.validar();
-            if(!"".equals(result)){
-                JOptionPane.showMessageDialog(this, result);
-            
+        Acompanhante acompanhante = new Acompanhante();
+        acompanhante.setNome(inputNome.getText());
+        acompanhante.setIdade("".equals(inputIdade.getText())?0:Integer.parseInt(inputIdade.getText()));
+        acompanhante.setCpf(inputCpf.getText());
+        acompanhante.setSexo(inputSexo.getText()); //adicionar o campo sexo no banco de dados posteriormente
+        acompanhante.setValorHora("".equals(inputValorHora.getText())?0.00:Double.parseDouble(inputValorHora.getText()));
+        acompanhante.setDescricao(inputDescricao.getText());
+        AcompanhanteFachada fachada = new AcompanhanteFachada();
+        String errorMsg = fachada.cadastraAcompanhante(acompanhante);
+        
+            if(!"".equals(errorMsg)){
+                JOptionPane.showMessageDialog(this, errorMsg);
             }else{
                     // manda salvar no banco
                 JOptionPane.showMessageDialog(this, "Acompanhante adicionada com sucesso!");

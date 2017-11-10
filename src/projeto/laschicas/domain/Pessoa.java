@@ -9,7 +9,7 @@ package projeto.laschicas.domain;
  *
  * @author lggui
  */
-public abstract class  Pessoa implements PessoaValidator{
+public abstract class  Pessoa{
     private String nome;
     private String cpf;
     private Integer idade;

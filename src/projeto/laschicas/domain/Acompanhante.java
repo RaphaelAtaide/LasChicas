@@ -86,16 +86,6 @@ public class Acompanhante extends Pessoa {
         if (getValorHora() == null || getValorHora() <= 0.0) {
             errorMsg+="Valor hora não pode ser menor ou igual a 0";
         }
-        if (true) {
-            
-        }
-        if (true) {
-            
-        }
-        if (true) {
-            
-        }
-        
         return errorMsg;
     
     }

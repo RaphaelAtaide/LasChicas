@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/domain/AcompanhanteDAO.java</file>
-            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/utils/GeralException.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/domain/AcompanhanteRegraNegocio.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/domain/Acompanhante.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/gui/CadastroAcompanhante.java</file>
             <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/domain/AcompanhanteFachada.java</file>
-            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/database/Conexao.java</file>
-            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/utils/GerenciadorConexao.java</file>
         </group>
     </open-files>
 </project-private>

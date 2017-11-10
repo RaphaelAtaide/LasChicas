@@ -11,4 +11,18 @@ package projeto.laschicas.domain;
  */
 public class AcompanhanteFachada {
     
-}
+    private static AcompanhanteRegraNegocio regraNegocio = new AcompanhanteRegraNegocio();
+
+
+    public String cadastraAcompanhante(Acompanhante acompanhante){
+        String errorMsg  = "";
+        errorMsg = regraNegocio.validaAcompanhante(acompanhante);
+        return errorMsg;
+        }
+    
+     public void removeAcompanhante(Integer id){
+         regraNegocio.removeAcompanhante(id);
+     }
+    }
+    
+
