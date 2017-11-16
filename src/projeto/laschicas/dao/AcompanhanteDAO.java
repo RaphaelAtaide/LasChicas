@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto.laschicas.domain;
+package projeto.laschicas.dao;
+
+import projeto.laschicas.domain.Acompanhante;
 
 /**
  *

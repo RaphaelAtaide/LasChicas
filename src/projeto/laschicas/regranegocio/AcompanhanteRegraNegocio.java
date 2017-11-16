@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto.laschicas.domain;
+package projeto.laschicas.regranegocio;
+
+import projeto.laschicas.domain.Acompanhante;
 
 /**
  *
@@ -37,4 +39,15 @@ public class AcompanhanteRegraNegocio {
     public void removeAcompanhante(Integer id){
         //
     }
+    
+    public void alteraAcompanhante(Integer id){
+        //
+    }
+    
+    public Acompanhante getAcompanhanteById(Integer id){
+        Acompanhante acompanhante = new Acompanhante();
+        return acompanhante;
+    }
+    
+    
 }

@@ -7,7 +7,7 @@ package projeto.laschicas.gui;
 
 import javax.swing.JOptionPane;
 import projeto.laschicas.domain.Acompanhante;
-import projeto.laschicas.domain.AcompanhanteFachada;
+import projeto.laschicas.fachada.AcompanhanteFachada;
 
 /**
  *
