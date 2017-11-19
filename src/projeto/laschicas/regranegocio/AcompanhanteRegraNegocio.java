@@ -92,7 +92,8 @@ public class AcompanhanteRegraNegocio {
     
     public ArrayList<Acompanhante> getAllAcompanhantes() throws Exception{
         
-        ArrayList<Acompanhante> acompanhantesList = acompanhanteDaoImpl.getAllAcompanhantes();
+        ArrayList<Acompanhante> acompanhantesList = new ArrayList<>();
+        acompanhantesList.addAll(acompanhanteDaoImpl.getAllAcompanhantes());
         return acompanhantesList;
     }
 

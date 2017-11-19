@@ -82,7 +82,8 @@ public class AcompanhanteFachada {
     
     public ArrayList<Acompanhante> getAllAcompanhantes() throws Exception{
         
-        ArrayList<Acompanhante> acompanhantesList = regraNegocio.getAllAcompanhantes();
+        ArrayList<Acompanhante> acompanhantesList =  new ArrayList<>();
+        acompanhantesList.addAll(regraNegocio.getAllAcompanhantes());
         return acompanhantesList;
         
     }

@@ -22,6 +22,8 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro_Acompanhante
      */
+     private Acompanhante acompanhante;
+     
     public CadastroAcompanhante() {
         initComponents();
         try {
@@ -32,11 +34,23 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     }
         public void preencherTabela() throws Exception{
         AcompanhanteFachada  fachada = new AcompanhanteFachada();
-        ArrayList<Acompanhante> acompanhantesList = fachada.getAllAcompanhantes();
+        ArrayList<Acompanhante> acompanhantesList = new ArrayList<>();
+        acompanhantesList.addAll(fachada.getAllAcompanhantes());
         DefaultTableModel model = (DefaultTableModel)acompanhanteTable.getModel();
-        Object[] data = new Object[100];
+        Object[] data = new Object[6];
         
-        for (Acompanhante acompanhantesList1 : acompanhantesList) {
+        for(int i =0;i<acompanhantesList.size();i++){
+            data[0] = acompanhantesList.get(i).getId();
+            data[1] = acompanhantesList.get(i).getNome();
+            data[2] = acompanhantesList.get(i).getIdade();
+            data[3] = acompanhantesList.get(i).getCpf();
+            data[4] = acompanhantesList.get(i).getValorHora();
+            data[5] = acompanhantesList.get(i).getDescricao();
+            model.addRow(data);
+        }
+        
+        
+        /*for (Acompanhante acompanhantesList1 : acompanhantesList) {
             data[0] = acompanhantesList1.getId();
             data[1] = acompanhantesList1.getNome();
             data[2] = acompanhantesList1.getIdade();
@@ -45,12 +59,13 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
             data[5] = acompanhantesList1.getDescricao();
             model.addRow(data);
         }
+        */
                 
     }
         
         
         public void limparForm(){
-            inputId.setText("");
+            acompanhante.setId(null);
             inputNome.setText("");
             inputIdade.setText("");
             inputCpf.setText("");
@@ -88,7 +103,6 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
         preencherCamposButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         inputPesquisaAcompanhante = new javax.swing.JTextField();
-        inputId = new javax.swing.JTextField();
         deletarAcompanhanteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         acompanhanteTable = new javax.swing.JTable();
@@ -167,9 +181,6 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 51, 152, 32));
         getContentPane().add(inputPesquisaAcompanhante, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 97, 260, 32));
 
-        inputId.setEditable(false);
-        getContentPane().add(inputId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 63, -1));
-
         deletarAcompanhanteButton.setText("Deletar");
         deletarAcompanhanteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,10 +236,8 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
 
     private void alterarAcompanhanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarAcompanhanteButtonActionPerformed
         AcompanhanteFachada fachada = new AcompanhanteFachada();
-        Acompanhante acompanhante = new Acompanhante();
 
         // Passa os inputs do form pra uma acompanhante
-        acompanhante.setId(Integer.parseInt(inputId.getText()));
         acompanhante.setNome(inputNome.getText());
         acompanhante.setIdade("".equals(inputIdade.getText())?0:Integer.parseInt(inputIdade.getText()));
         acompanhante.setCpf(inputCpf.getText());
@@ -252,8 +261,8 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
          AcompanhanteFachada fachada = new AcompanhanteFachada();
        
        try {
-            Acompanhante acompanhante = fachada.getAcompanhanteByName(inputPesquisaAcompanhante.getText());
-            inputId.setText(acompanhante.getId().toString());
+            acompanhante = fachada.getAcompanhanteByName(inputPesquisaAcompanhante.getText());
+            
             inputNome.setText(acompanhante.getNome());
             inputIdade.setText(acompanhante.getIdade().toString());
             inputCpf.setText(acompanhante.getCpf());
@@ -270,7 +279,7 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     private void deletarAcompanhanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarAcompanhanteButtonActionPerformed
           AcompanhanteFachada fachada = new AcompanhanteFachada();
         try {
-            fachada.removeAcompanhante(Integer.parseInt(inputId.getText()));
+            fachada.removeAcompanhante(acompanhante.getId());
             JOptionPane.showMessageDialog(this, "Acompanhante deletada com sucesso!");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Acompanhante não pôde ser deletada! \n erro: "+ex.toString());
@@ -326,7 +335,6 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     private javax.swing.JButton deletarAcompanhanteButton;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputDescricao;
-    private javax.swing.JTextField inputId;
     private javax.swing.JTextField inputIdade;
     private javax.swing.JTextField inputNome;
     private javax.swing.JTextField inputPesquisaAcompanhante;

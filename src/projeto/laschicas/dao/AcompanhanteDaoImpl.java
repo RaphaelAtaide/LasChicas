@@ -37,10 +37,8 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             statement.setString(3, acompanhante.getCpf());
             statement.setDouble(4, acompanhante.getValorHora());
             statement.setString(5, acompanhante.getDescricao());
-            
-            
             statement.executeUpdate();
-        
+            
         } catch (SQLException ex) {
                 throw new Exception(ex.getMessage());
         }
@@ -69,8 +67,7 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LasChicas", "root", "grupo4");
           String query = "UPDATE ACOMPANHANTE SET NOME = ? ,IDADE = ? , CPF = ? ,VALORHORA = ?, DESCRICAO = ? WHERE IDACOMPANHANTE = ?";
           PreparedStatement statement = con.prepareStatement(query);
-       
-          
+      
           statement.setString(1, acompanhante.getNome());
           statement.setInt(2, acompanhante.getIdade());
           statement.setString(3, acompanhante.getCpf());
@@ -98,20 +95,12 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             ResultSet result = statement.executeQuery();
             
             while (result.next()){
-                String idReturn = result.getString(1);
-                String name = result.getString(2);
-                String idade = result.getString(3);
-                String cpf = result.getString(4);
-                String valorHora = result.getString(5);
-                String descricao = result.getString(6);
-                
-                acompanhante.setId(Integer.parseInt(idReturn));
-                acompanhante.setNome(name);
-                acompanhante.setIdade(Integer.parseInt(idade));
-                acompanhante.setCpf(cpf);
-                acompanhante.setValorHora(Double.parseDouble(valorHora));
-                acompanhante.setDescricao(descricao);
-
+                acompanhante.setId(result.getInt(1));
+                acompanhante.setNome(result.getString(2));
+                acompanhante.setIdade(result.getInt(3));
+                acompanhante.setCpf(result.getString(4));
+                acompanhante.setValorHora(result.getDouble(5));
+                acompanhante.setDescricao(result.getString(6)); 
             }
         
         } catch (SQLException ex) {
@@ -132,19 +121,13 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             ResultSet result = statement.executeQuery();
             
             while (result.next()){
-                String id = result.getString(1);
-                String name = result.getString(2);
-                String idade = result.getString(3);
-                String cpf = result.getString(4);
-                String valorHora = result.getString(5);
-                String descricao = result.getString(6);
                 
-                acompanhante.setId(Integer.parseInt(id));
-                acompanhante.setNome(name);
-                acompanhante.setIdade(Integer.parseInt(idade));
-                acompanhante.setCpf(cpf);
-                acompanhante.setValorHora(Double.parseDouble(valorHora));
-                acompanhante.setDescricao(descricao);
+                acompanhante.setId(result.getInt(1));
+                acompanhante.setNome(result.getString(2));
+                acompanhante.setIdade(result.getInt(3));
+                acompanhante.setCpf(result.getString(4));
+                acompanhante.setValorHora(result.getDouble(5));
+                acompanhante.setDescricao(result.getString(6)); 
 
             }
         
@@ -155,8 +138,7 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
     }
     
     public ArrayList<Acompanhante> getAllAcompanhantes() throws Exception{
-        ArrayList<Acompanhante> acompanhanteList = new ArrayList<Acompanhante>();
-        Acompanhante acompanhante = new Acompanhante();
+        ArrayList<Acompanhante> acompanhantesList = new ArrayList<Acompanhante>();
         try {
             
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LasChicas", "root", "grupo4");
@@ -164,27 +146,19 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             PreparedStatement statement = con.prepareStatement(query);            
             ResultSet result = statement.executeQuery();
             
-            while (result.next()){
-                String id = result.getString(1);
-                String name = result.getString(2);
-                String idade = result.getString(3);
-                String cpf = result.getString(4);
-                String valorHora = result.getString(5);
-                String descricao = result.getString(6);
-                
-                acompanhante.setId(Integer.parseInt(id));
-                acompanhante.setNome(name);
-                acompanhante.setIdade(Integer.parseInt(idade));
-                acompanhante.setCpf(cpf);
-                acompanhante.setValorHora(Double.parseDouble(valorHora));
-                acompanhante.setDescricao(descricao);
-                acompanhanteList.add(acompanhante);
+            while (result.next()){                
+                Acompanhante acompanhante = new Acompanhante();
+                acompanhante.setId(result.getInt(1));
+                acompanhante.setNome(result.getString(2));
+                acompanhante.setIdade(result.getInt(3));
+                acompanhante.setCpf(result.getString(4));
+                acompanhante.setValorHora(result.getDouble(5));
+                acompanhante.setDescricao(result.getString(6));                
+                acompanhantesList.add(acompanhante);
             }
-                
         } catch (SQLException ex) {
             throw new Exception(ex.getMessage());
-        }
-       return acompanhanteList;
+        }        
+        return acompanhantesList;
     }
-    
 }
