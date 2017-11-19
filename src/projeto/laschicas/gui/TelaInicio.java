@@ -5,6 +5,14 @@
  */
 package projeto.laschicas.gui;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import projeto.laschicas.domain.Acompanhante;
+import projeto.laschicas.fachada.AcompanhanteFachada;
+
 /**
  *
  * @author lggui
@@ -14,8 +22,31 @@ public class TelaInicio extends javax.swing.JFrame {
     /**
      * Creates new form TelaInicio
      */
-    public TelaInicio() {
+    public TelaInicio(){
         initComponents();
+        try {
+            fetch();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void fetch() throws Exception{
+        AcompanhanteFachada  fachada = new AcompanhanteFachada();
+        ArrayList<Acompanhante> acompanhantesList = fachada.getAllAcompanhantes();
+        DefaultTableModel model = (DefaultTableModel)acompanhanteTable.getModel();
+        Object[] data = new Object[100];
+        
+        for (Acompanhante acompanhantesList1 : acompanhantesList) {
+            data[0] = acompanhantesList1.getId();
+            data[1] = acompanhantesList1.getNome();
+            data[2] = acompanhantesList1.getIdade();
+            data[3] = acompanhantesList1.getCpf();
+            data[4] = acompanhantesList1.getValorHora();
+            data[5] = acompanhantesList1.getDescricao();
+            model.addRow(data);
+        }
+                
     }
 
     /**
@@ -27,17 +58,36 @@ public class TelaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        acompanhanteTable = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        acompanhanteTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "IdAcompanhante", "Nome", "Idade", "Cpf", "Valor Hora", "Descrição"
+            }
+        ));
+        jScrollPane1.setViewportView(acompanhanteTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1113, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(436, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +129,7 @@ public class TelaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable acompanhanteTable;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

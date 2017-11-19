@@ -89,7 +89,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projeto/laschicas/gui/background.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(-140, -200, 1770, 1380);
+        jLabel4.setBounds(-130, -280, 1770, 1560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,6 +115,7 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Usuário logado com sucesso");
             this.setVisible(false);
             new CadastroAcompanhante().setVisible(true);
+            //new TelaInicio().setVisible(true);
         }
     }//GEN-LAST:event_loginOnClick
 

@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto.laschicas.utils;
+package projeto.laschicas.dao;
 
 /**
  *
  * @author lggui
  */
-public class ConexaoException  extends Exception {
-    public ConexaoException(String texto) {
+public class DaoException extends Exception {
+    public DaoException(String texto) {
         super(texto);
     }
     
-    public ConexaoException(){
-    }
-    
 }
-

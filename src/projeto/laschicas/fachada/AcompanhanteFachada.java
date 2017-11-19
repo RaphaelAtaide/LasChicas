@@ -5,6 +5,7 @@
  */
 package projeto.laschicas.fachada;
 
+import java.util.ArrayList;
 import projeto.laschicas.domain.Acompanhante;
 import projeto.laschicas.regranegocio.AcompanhanteRegraNegocio;
 
@@ -17,24 +18,74 @@ public class AcompanhanteFachada {
     private static AcompanhanteRegraNegocio regraNegocio = new AcompanhanteRegraNegocio();
 
 
-    public String cadastraAcompanhante(Acompanhante acompanhante){
-        String errorMsg  = "";
-        errorMsg = regraNegocio.validaAcompanhante(acompanhante);
-        return errorMsg;
+    public void cadastraAcompanhante(Acompanhante acompanhante) throws Exception{
+        // Faz a validação da acompanhante antes de inserir no banco
+        try{
+            regraNegocio.validaAcompanhante(acompanhante);
+        }catch(Exception ex){
+            throw new Exception(ex.getMessage());
+        }
+        //Inserção da acompanhante no banco
+        try{
+            regraNegocio.validaAcompanhante(acompanhante);
+            regraNegocio.cadastraAcompanhante(acompanhante);
+        }catch(Exception ex){
+            throw new Exception(ex.getMessage());
+        }
     }
-    
-    public void removeAcompanhante(Integer id){
-         regraNegocio.removeAcompanhante(id);
+ 
+    public void removeAcompanhante(Integer id) throws Exception{
+        try {
+            regraNegocio.removeAcompanhante(id);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
      
-    public void alteraAcompanhante(Integer id){
-         regraNegocio.alteraAcompanhante(id);
+    public void alteraAcompanhante(Acompanhante acompanhante) throws Exception{
+        
+        // Faz a validação da acompanhante antes de atualizar no banco
+        try{
+            regraNegocio.validaAcompanhante(acompanhante);
+        }catch(Exception ex){
+            throw new Exception(ex.getMessage());
+        }
+        // Atualização da acompanhante no banco
+        try {
+            regraNegocio.alteraAcompanhante(acompanhante);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
     
-    public Acompanhante getAcompanhanteById(Integer id){
-        Acompanhante acompanhante = regraNegocio.getAcompanhanteById(id);
-        return acompanhante;
-    }
-}
+    public Acompanhante getAcompanhanteById(Integer id) throws Exception{
+        Acompanhante acompanhante = null;
+        try {
+            acompanhante = regraNegocio.getAcompanhanteById(id);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }    
+            return acompanhante;
+        }
     
-
+    
+    public Acompanhante getAcompanhanteByName(String nome) throws Exception{
+        Acompanhante acompanhante = null;
+        try {
+            acompanhante = regraNegocio.getAcompanhanteByName(nome);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }    
+            return acompanhante;
+        }
+    
+    
+    public ArrayList<Acompanhante> getAllAcompanhantes() throws Exception{
+        
+        ArrayList<Acompanhante> acompanhantesList = regraNegocio.getAllAcompanhantes();
+        return acompanhantesList;
+        
+    }
+    }
+  
+  

@@ -5,7 +5,11 @@
  */
 package projeto.laschicas.gui;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.laschicas.domain.Acompanhante;
 import projeto.laschicas.fachada.AcompanhanteFachada;
 
@@ -20,7 +24,41 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
      */
     public CadastroAcompanhante() {
         initComponents();
+        try {
+            preencherTabela();
+        } catch (Exception ex) {
+            
+        }
     }
+        public void preencherTabela() throws Exception{
+        AcompanhanteFachada  fachada = new AcompanhanteFachada();
+        ArrayList<Acompanhante> acompanhantesList = fachada.getAllAcompanhantes();
+        DefaultTableModel model = (DefaultTableModel)acompanhanteTable.getModel();
+        Object[] data = new Object[100];
+        
+        for (Acompanhante acompanhantesList1 : acompanhantesList) {
+            data[0] = acompanhantesList1.getId();
+            data[1] = acompanhantesList1.getNome();
+            data[2] = acompanhantesList1.getIdade();
+            data[3] = acompanhantesList1.getCpf();
+            data[4] = acompanhantesList1.getValorHora();
+            data[5] = acompanhantesList1.getDescricao();
+            model.addRow(data);
+        }
+                
+    }
+        
+        
+        public void limparForm(){
+            inputId.setText("");
+            inputNome.setText("");
+            inputIdade.setText("");
+            inputCpf.setText("");
+            inputSexo.setText("");
+            inputValorHora.setText("");
+            inputDescricao.setText("");
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,26 +83,48 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         Cadastrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        limparFormButton = new javax.swing.JButton();
+        alterarAcompanhanteButton = new javax.swing.JButton();
+        preencherCamposButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        inputPesquisaAcompanhante = new javax.swing.JTextField();
+        inputId = new javax.swing.JTextField();
+        deletarAcompanhanteButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        acompanhanteTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel1.setText("Nome");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Idade");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("CPF");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, 20));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Sexo");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+        getContentPane().add(inputDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 237, 30));
+        getContentPane().add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 237, 32));
+        getContentPane().add(inputIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 237, 32));
+        getContentPane().add(inputCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 237, 30));
+        getContentPane().add(inputValorHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 237, 31));
+        getContentPane().add(inputSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 237, 31));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Valor Hora");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setText("Descrição");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 374, -1, -1));
 
         Cadastrar.setText("Cadastrar");
         Cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,108 +132,150 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
                 cadastrarClickButton(evt);
             }
         });
+        getContentPane().add(Cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 149, 34));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Cadastro de nova acompanhante");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 13, 355, 68));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(454, 454, 454)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(355, 355, 355)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(63, 63, 63)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(496, 496, 496)
-                        .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(580, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(61, 61, 61)
-                .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
-        );
+        limparFormButton.setText("Limpar Campos");
+        limparFormButton.setToolTipText("");
+        limparFormButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparFormButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(limparFormButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 147, 37));
+
+        alterarAcompanhanteButton.setText("Alterar");
+        alterarAcompanhanteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarAcompanhanteButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(alterarAcompanhanteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 147, 34));
+
+        preencherCamposButton.setText("Preencher Campos");
+        preencherCamposButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preencherCamposButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(preencherCamposButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(904, 96, 250, 35));
+
+        jLabel8.setText("Pesquisar Acompanhante");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 51, 152, 32));
+        getContentPane().add(inputPesquisaAcompanhante, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 97, 260, 32));
+
+        inputId.setEditable(false);
+        getContentPane().add(inputId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 63, -1));
+
+        deletarAcompanhanteButton.setText("Deletar");
+        deletarAcompanhanteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletarAcompanhanteButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deletarAcompanhanteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 149, 34));
+
+        acompanhanteTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome", "Idade", "Cpf", "Valor Hora", "Descrição"
+            }
+        ));
+        jScrollPane1.setViewportView(acompanhanteTable);
+        if (acompanhanteTable.getColumnModel().getColumnCount() > 0) {
+            acompanhanteTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 550, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarClickButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarClickButton
+        
         Acompanhante acompanhante = new Acompanhante();
+        // Passa os inputs do form pra uma acompanhante
         acompanhante.setNome(inputNome.getText());
         acompanhante.setIdade("".equals(inputIdade.getText())?0:Integer.parseInt(inputIdade.getText()));
         acompanhante.setCpf(inputCpf.getText());
         acompanhante.setSexo(inputSexo.getText()); //adicionar o campo sexo no banco de dados posteriormente
         acompanhante.setValorHora("".equals(inputValorHora.getText())?0.00:Double.parseDouble(inputValorHora.getText()));
         acompanhante.setDescricao(inputDescricao.getText());
+     
         AcompanhanteFachada fachada = new AcompanhanteFachada();
-        String errorMsg = fachada.cadastraAcompanhante(acompanhante);
-        
-            if(!"".equals(errorMsg)){
-                JOptionPane.showMessageDialog(this, errorMsg);
-            }else{
-                    // manda salvar no banco
-                JOptionPane.showMessageDialog(this, "Acompanhante adicionada com sucesso!");
-                this.dispose();
-            }
-            
-        
-        
-        
+        // Chama a fachada cadastrar acommpanhante no banco
+        try {
+            fachada.cadastraAcompanhante(acompanhante);
+            JOptionPane.showMessageDialog(this, "Acompanhante adicionada com sucesso!");
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
         
     }//GEN-LAST:event_cadastrarClickButton
+
+    private void limparFormButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparFormButtonActionPerformed
+        limparForm();
+    }//GEN-LAST:event_limparFormButtonActionPerformed
+
+    private void alterarAcompanhanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarAcompanhanteButtonActionPerformed
+        AcompanhanteFachada fachada = new AcompanhanteFachada();
+        Acompanhante acompanhante = new Acompanhante();
+
+        // Passa os inputs do form pra uma acompanhante
+        acompanhante.setId(Integer.parseInt(inputId.getText()));
+        acompanhante.setNome(inputNome.getText());
+        acompanhante.setIdade("".equals(inputIdade.getText())?0:Integer.parseInt(inputIdade.getText()));
+        acompanhante.setCpf(inputCpf.getText());
+        acompanhante.setSexo(inputSexo.getText()); //adicionar o campo sexo no banco de dados posteriormente
+        acompanhante.setValorHora("".equals(inputValorHora.getText())?0.00:Double.parseDouble(inputValorHora.getText()));
+        acompanhante.setDescricao(inputDescricao.getText()); 
+      
+        try {
+            fachada.alteraAcompanhante(acompanhante);
+            JOptionPane.showMessageDialog(this, "Acompanhante atualizada com sucesso!");
+            preencherTabela();
+            limparForm();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
+         
+         
+    }//GEN-LAST:event_alterarAcompanhanteButtonActionPerformed
+
+    private void preencherCamposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preencherCamposButtonActionPerformed
+         AcompanhanteFachada fachada = new AcompanhanteFachada();
+       
+       try {
+            Acompanhante acompanhante = fachada.getAcompanhanteByName(inputPesquisaAcompanhante.getText());
+            inputId.setText(acompanhante.getId().toString());
+            inputNome.setText(acompanhante.getNome());
+            inputIdade.setText(acompanhante.getIdade().toString());
+            inputCpf.setText(acompanhante.getCpf());
+            inputSexo.setText("F");
+            inputValorHora.setText(acompanhante.getValorHora().toString());
+            inputDescricao.setText(acompanhante.getDescricao());
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Acompanhante não encontrada!");
+        }
+        
+    }//GEN-LAST:event_preencherCamposButtonActionPerformed
+
+    private void deletarAcompanhanteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarAcompanhanteButtonActionPerformed
+          AcompanhanteFachada fachada = new AcompanhanteFachada();
+        try {
+            fachada.removeAcompanhante(Integer.parseInt(inputId.getText()));
+            JOptionPane.showMessageDialog(this, "Acompanhante deletada com sucesso!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Acompanhante não pôde ser deletada! \n erro: "+ex.toString());
+        }  
+    }//GEN-LAST:event_deletarAcompanhanteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,10 +321,15 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
+    private javax.swing.JTable acompanhanteTable;
+    private javax.swing.JButton alterarAcompanhanteButton;
+    private javax.swing.JButton deletarAcompanhanteButton;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputDescricao;
+    private javax.swing.JTextField inputId;
     private javax.swing.JTextField inputIdade;
     private javax.swing.JTextField inputNome;
+    private javax.swing.JTextField inputPesquisaAcompanhante;
     private javax.swing.JTextField inputSexo;
     private javax.swing.JTextField inputValorHora;
     private javax.swing.JLabel jLabel1;
@@ -232,5 +339,9 @@ public class CadastroAcompanhante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limparFormButton;
+    private javax.swing.JButton preencherCamposButton;
     // End of variables declaration//GEN-END:variables
 }

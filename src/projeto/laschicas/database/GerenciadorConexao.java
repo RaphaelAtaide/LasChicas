@@ -6,7 +6,6 @@
 package projeto.laschicas.database;
 
 import com.mysql.jdbc.Connection;
-import projeto.laschicas.utils.ConexaoException;
 
 /**
  *

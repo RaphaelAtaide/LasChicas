@@ -9,7 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import projeto.laschicas.utils.ConexaoException;
+
+import projeto.laschicas.database.ConexaoException;
 
 public class GerenciadorConexaoImpl implements GerenciadorConexao {
     private static GerenciadorConexaoImpl instancia;
@@ -42,6 +43,5 @@ public class GerenciadorConexaoImpl implements GerenciadorConexao {
     public void fecharConexao(com.mysql.jdbc.Connection c) throws ConexaoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
 }

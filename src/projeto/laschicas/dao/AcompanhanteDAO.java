@@ -12,13 +12,14 @@ import projeto.laschicas.domain.Acompanhante;
  * @author lggui
  */
 public interface AcompanhanteDAO {
-     public void inserir(Acompanhante acompanhante);
     
-    public void deletar(Integer id);
+    public void inserir(Acompanhante acompanhante) throws Exception; 
     
-    public void atualizar(Acompanhante acompanhante);
+    public void deletar(Integer id) throws Exception;
     
-    public Acompanhante getAcompanhanteById(Integer id);
+    public void atualizar(Acompanhante acompanhante) throws Exception;
     
-    public Acompanhante getAcompanhanteByName(String nome);
+    public Acompanhante getAcompanhanteById(Integer id) throws Exception;
+    
+    public Acompanhante getAcompanhanteByName(String nome) throws Exception;
 }
