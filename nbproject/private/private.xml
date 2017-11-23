@@ -6,7 +6,12 @@
             <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/fachada/AcompanhanteFachada.java</file>
             <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/dao/AcompanhanteDaoImpl.java</file>
             <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/regranegocio/AcompanhanteRegraNegocio.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/gui/TelaInicio.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/gui/TelaLogin.java</file>
             <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/gui/CadastroAcompanhante.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/fachada/SystemFacade.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/fachada/SystemFacadeImpl.java</file>
+            <file>file:/C:/Users/lggui/Documents/NetBeansProjects/LasChicas/src/projeto/laschicas/fachada/ClienteFachada.java</file>
         </group>
     </open-files>
 </project-private>

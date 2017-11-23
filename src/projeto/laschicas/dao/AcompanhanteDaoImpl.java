@@ -117,7 +117,7 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LasChicas", "root", "grupo4");
             String query = "SELECT * FROM ACOMPANHANTE WHERE NOME like ?";
             PreparedStatement statement = con.prepareStatement(query);            
-            statement.setString(1,nome);
+            statement.setString(1,'%'+nome+'%');
             ResultSet result = statement.executeQuery();
             
             while (result.next()){
@@ -143,6 +143,32 @@ public class AcompanhanteDaoImpl implements AcompanhanteDAO {
             
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LasChicas", "root", "grupo4");
             String query = "SELECT * FROM ACOMPANHANTE";
+            PreparedStatement statement = con.prepareStatement(query);            
+            ResultSet result = statement.executeQuery();
+            
+            while (result.next()){                
+                Acompanhante acompanhante = new Acompanhante();
+                acompanhante.setId(result.getInt(1));
+                acompanhante.setNome(result.getString(2));
+                acompanhante.setIdade(result.getInt(3));
+                acompanhante.setCpf(result.getString(4));
+                acompanhante.setValorHora(result.getDouble(5));
+                acompanhante.setDescricao(result.getString(6));                
+                acompanhantesList.add(acompanhante);
+            }
+        } catch (SQLException ex) {
+            throw new Exception(ex.getMessage());
+        }        
+        return acompanhantesList;
+    }
+    
+    
+    public ArrayList<Acompanhante> findAcompanhantes() throws Exception{
+        ArrayList<Acompanhante> acompanhantesList = new ArrayList<Acompanhante>();
+        try {
+            
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LasChicas", "root", "grupo4");
+            String query = "SELECT * FROM ACOMPANHANTE WHERE (NOME LIKE %?% OR IDADE LIKE %?% OR CPF LIKE %?% OR VALORHORA LIKE %?% OR DESCRICAO LIKE %?%)";
             PreparedStatement statement = con.prepareStatement(query);            
             ResultSet result = statement.executeQuery();
             
