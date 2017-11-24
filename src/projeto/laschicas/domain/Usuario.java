@@ -1,5 +1,7 @@
 package projeto.laschicas.domain;
 
+import javax.management.Query;
+
 public class Usuario {
 
 	private int id;
